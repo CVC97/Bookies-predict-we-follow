@@ -56,7 +56,7 @@ def filename_to_dictionary(filename):
 #filename to playername
 def csv_to_string(stringcsv):
     firstname = stringcsv[0:stringcsv.find('_')]
-    secondname = stringcsv[stringcsv.find('_')+1:stringcsv.find('_2021')]
+    secondname = stringcsv[stringcsv.find('_')+1:stringcsv.find('_20')]
     return f'{firstname} {secondname}'
 
 
@@ -70,7 +70,8 @@ def curve_rat(list_of_players):
             y = [player_dict[x][0] for x in plot_count],
         ))
         p.line(
-            line_color = dick_with_colors[item], 
+            # line_color = dick_with_colors[item], 
+            line_color = 'grey', 
             legend_label = csv_to_string(item), 
             line_width = 2, 
             source = data, 
@@ -88,8 +89,8 @@ def curve_pay_p(list_of_players):
         p.line(
             source = data, 
             line_dash = 'dashed',
-            line_color = dick_with_colors[item], 
-            legend_label = csv_to_string(item), 
+            line_color = 'red', 
+            legend_label = csv_to_string(item) + ' (Bet-on-Player)', 
             line_width = 1, 
             name = f'{csv_to_string(item)} (Bet-on-Player)'
             )
@@ -105,8 +106,8 @@ def curve_pay_opp(list_of_players):
         p.line(
             source = data, 
             line_dash = 'dashed',
-            line_color = dick_with_colors[item], 
-            legend_label = csv_to_string(item), 
+            line_color = 'blue', 
+            legend_label = csv_to_string(item) + ' (Bet-on-Opponent)', 
             line_width = 1, 
             name = f'{csv_to_string(item)} (Bet-on-Opponent)'
             )
@@ -117,6 +118,8 @@ def make_plot(list_of_players):
     curve_rat(list_of_players)
     curve_pay_p(list_of_players)
     curve_pay_opp(list_of_players)
+    p.legend.location = "bottom_left"
+    output_file(filename = "index.html")    
     show(p)
 
 
@@ -129,8 +132,8 @@ TOOLTIPS = [
 
 p = figure(
     title = 'Bookies predict - we follow: Rating Over Time', 
-    plot_width = 800, 
-    plot_height = 600, 
+    width = 800, 
+    height = 600, 
     x_axis_label= 'calendar week', 
     y_axis_label = 'rating', 
     tooltips = TOOLTIPS,
@@ -139,10 +142,11 @@ p = figure(
 
 #players 
 list_of_players = [
-    'Alex_Zverev_2021.csv',
-    'Dominic_Thiem_2021.csv',
-    'Novak_Djokovic_2021.csv',
-    
+    # 'Alex_Zverev_2021.csv',
+    # 'Dominic_Thiem_2021.csv',
+    #'Novak_Djokovic_2021.csv',
+    'Grigor_Dimitrov_2023.csv',
+
 ]
 
 
@@ -153,4 +157,3 @@ for item in list_of_players:
 
 
 make_plot(list_of_players)
-
