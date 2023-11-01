@@ -118,7 +118,7 @@ def make_plot(list_of_players):
     curve_rat(list_of_players)
     curve_pay_p(list_of_players)
     curve_pay_opp(list_of_players)
-    p.legend.location = "bottom_left"
+    p.legend.location = "top_left"
     output_file(filename = "index.html")    
     show(p)
 
@@ -145,8 +145,8 @@ list_of_players = [
     # 'Alex_Zverev_2021.csv',
     # 'Dominic_Thiem_2021.csv',
     #'Novak_Djokovic_2021.csv',
-    'Grigor_Dimitrov_2023.csv',
-
+    #'Grigor_Dimitrov_2023.csv',
+    'Casper_Ruud_2023.csv'
 ]
 
 
